@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Download() {
   return (
     <div className="scanline max-w-3xl mx-auto space-y-8">
@@ -51,9 +53,9 @@ export default function Download() {
       </section>
 
       <div className="text-center">
-        <a href="/" className="text-green-600 hover:text-green-400 transition-colors text-sm">
+        <Link href="/" className="text-green-600 hover:text-green-400 transition-colors text-sm">
           [вернуться домой]
-        </a>
+        </Link>
       </div>
     </div>
   );

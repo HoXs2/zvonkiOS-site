@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div className="scanline">
@@ -24,12 +26,12 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a
+          <Link
             href="/download/"
             className="px-8 py-3 border border-green-500 hover:bg-green-500/10 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] transition-all duration-300 uppercase tracking-widest"
           >
             [скачать]
-          </a>
+          </Link>
           <a
             href="#features"
             className="px-8 py-3 border border-green-800 hover:border-green-500 hover:bg-green-500/10 transition-all duration-300 uppercase tracking-widest"

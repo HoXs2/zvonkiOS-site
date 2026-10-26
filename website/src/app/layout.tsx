@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -10,9 +11,6 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "ZвонкиОС",
   description: "рофловый дистро на арх-основе. звонки не отменяются.",
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({
@@ -28,12 +26,12 @@ export default function RootLayout({
         <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,#001a00,transparent),radial-gradient(ellipse_at_bottom,#000500,transparent)]">
           <header className="border-b border-green-800/50 backdrop-blur-sm">
             <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-              <a href="/" className="text-xl font-bold tracking-widest uppercase glitch">
+              <Link href="/" className="text-xl font-bold tracking-widest uppercase glitch">
                 [ZвонкиОС]
-              </a>
+              </Link>
               <div className="flex gap-6 text-sm">
-                <a href="/" className="hover:text-green-300 transition-colors">~/home</a>
-                <a href="/download/" className="hover:text-green-300 transition-colors">~/download</a>
+                <Link href="/" className="hover:text-green-300 transition-colors">~/home</Link>
+                <Link href="/download/" className="hover:text-green-300 transition-colors">~/download</Link>
               </div>
             </nav>
           </header>
