@@ -10,7 +10,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "ZвонкиОС",
-  description: "рофловый дистро на арх-основе. звонки не отменяются.",
+  description: "Звонки ОС для настоящих Звонковых. минималистичный, мемный, олегаподобный.",
 };
 
 export default function RootLayout({
