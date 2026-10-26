@@ -31,6 +31,7 @@ export default function RootLayout({
               </Link>
               <div className="flex gap-6 text-sm">
                 <Link href="/" className="hover:text-green-300 transition-colors">~/home</Link>
+                <Link href="/#memes" className="hover:text-green-300 transition-colors">~/мемы</Link>
                 <Link href="/download/" className="hover:text-green-300 transition-colors">~/download</Link>
               </div>
             </nav>

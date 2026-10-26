@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MemeMachine, ZvonokCard } from "@/components/memes";
 
 export default function Home() {
   return (
@@ -58,6 +59,38 @@ export default function Home() {
           <div className="border border-green-800/50 p-6 bg-black/40 hover:border-green-500/50 transition-colors">
             <h3 className="text-green-300 mb-2">[minimal]</h3>
             <p className="text-sm text-green-400/80">только необходимое. остальное сам настраивай</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="memes" className="mt-24 space-y-8">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-widest text-center">
+          <span className="text-green-600">[</span> мемасики <span className="text-green-600">]</span>
+        </h2>
+        <p className="text-center text-sm text-green-600">
+          сгенерировано звонковым генератором случайных мемов
+        </p>
+
+        <div className="grid lg:grid-cols-3 gap-6 items-start">
+          <div className="lg:col-span-2">
+            <MemeMachine />
+          </div>
+          <div className="space-y-6">
+            <ZvonokCard />
+            <div className="border border-green-800/50 bg-black/40 p-4">
+              <pre className="text-green-400/80 text-xs leading-tight overflow-x-auto">
+{String.raw`      .-"""-.
+     /  ZVON \
+    |  .---.  |   ZVON
+    |  |   |  |   ZVON
+    |  '---'  |   ZVON
+     \       /
+      '-...-'`}
+              </pre>
+              <p className="text-center text-[10px] text-green-700 mt-2">
+                звонок приближается
+              </p>
+            </div>
           </div>
         </div>
       </section>
