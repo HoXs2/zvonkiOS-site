@@ -1,0 +1,14 @@
+# секреты и личные данные
+.env
+.env.*
+config.json
+seen.db
+__pycache__/
+*.pyc
+
+# python
+.venv/
+venv/
+
+# системное
+.DS_Store
