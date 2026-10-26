@@ -26,12 +26,17 @@ export default function RootLayout({
         <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,#001a00,transparent),radial-gradient(ellipse_at_bottom,#000500,transparent)]">
           <header className="border-b border-green-800/50 backdrop-blur-sm">
             <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-              <Link href="/" className="text-xl font-bold tracking-widest uppercase glitch">
+              <Link
+                href="/"
+                className="text-xl font-bold tracking-widest uppercase glitch"
+                data-text="[ZвонкиОС]"
+              >
                 [ZвонкиОС]
               </Link>
               <div className="flex gap-6 text-sm">
                 <Link href="/" className="hover:text-green-300 transition-colors">~/home</Link>
                 <Link href="/#memes" className="hover:text-green-300 transition-colors">~/мемы</Link>
+                <Link href="/#gallery" className="hover:text-green-300 transition-colors">~/галерея</Link>
                 <Link href="/download/" className="hover:text-green-300 transition-colors">~/download</Link>
               </div>
             </nav>

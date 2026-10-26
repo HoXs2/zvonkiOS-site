@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480">
+  <defs>
+    <pattern id="g6" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#2f2a0f" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="480" fill="#000"/>
+  <rect width="640" height="480" fill="url(#g6)"/>
+  <rect x="12" y="12" width="616" height="456" fill="none" stroke="#eab308" stroke-opacity="0.5" stroke-width="2"/>
+
+  <text x="40" y="60" font-family="monospace" font-size="14" fill="#a16207">[IMPORTANT]</text>
+
+  <g transform="translate(320 170)">
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#eab308" stroke-width="3"/>
+    <text x="0" y="18" text-anchor="middle" font-family="monospace" font-size="48" font-weight="bold" fill="#eab308">!</text>
+  </g>
+
+  <text x="320" y="310" text-anchor="middle" font-family="monospace" font-size="46" font-weight="bold" fill="#facc15">БЛИНЧИК ЛОХ</text>
+  <text x="320" y="355" text-anchor="middle" font-family="monospace" font-size="20" fill="#eab308">кстати</text>
+
+  <text x="320" y="425" text-anchor="middle" font-family="monospace" font-size="14" fill="#a16207">официальная позиция ZвонкиОС</text>
+</svg>

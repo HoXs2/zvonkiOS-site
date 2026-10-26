@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480">
+  <defs>
+    <pattern id="g7" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#0f2f1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="480" fill="#000"/>
+  <rect width="640" height="480" fill="url(#g7)"/>
+  <rect x="12" y="12" width="616" height="456" fill="none" stroke="#22c55e" stroke-opacity="0.35" stroke-width="2"/>
+
+  <text x="40" y="70" font-family="monospace" font-size="22" fill="#4ade80"># fsck /dev/zvonok</text>
+
+  <g font-family="monospace" font-size="15" fill="#22c55e" opacity="0.8">
+    <text x="40" y="115">pass 1: checking inodes, blocks, and sizes</text>
+    <text x="40" y="140">pass 2: checking directory structure</text>
+    <text x="40" y="165">pass 3: checking connectivity</text>
+    <text x="40" y="190">pass 4: checking звонки</text>
+    <text x="40" y="215">pass 5: checking отменяемость звонков</text>
+  </g>
+
+  <text x="40" y="275" font-family="monospace" font-size="15" fill="#4ade80">результат: 0 ошибок</text>
+
+  <text x="320" y="360" text-anchor="middle" font-family="monospace" font-size="34" font-weight="bold" fill="#eab308">звонок всё равно идёт</text>
+
+  <text x="320" y="420" text-anchor="middle" font-family="monospace" font-size="15" fill="#166534">это не баг, это философия</text>
+</svg>

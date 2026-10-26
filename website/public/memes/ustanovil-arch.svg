@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480">
+  <defs>
+    <pattern id="g4" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#0f2f1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="480" fill="#000"/>
+  <rect width="640" height="480" fill="url(#g4)"/>
+  <rect x="12" y="12" width="616" height="456" fill="none" stroke="#22c55e" stroke-opacity="0.35" stroke-width="2"/>
+
+  <g transform="translate(320 130)">
+    <text x="0" y="0" text-anchor="middle" font-family="monospace" font-size="54" font-weight="bold" fill="#22c55e">я установил арч</text>
+  </g>
+
+  <g stroke="#22c55e" stroke-width="2" fill="none" opacity="0.7">
+    <path d="M320 160 l-90 160 h180 z"/>
+    <path d="M320 210 l-52 92 h104 z"/>
+  </g>
+
+  <text x="320" y="380" text-anchor="middle" font-family="monospace" font-size="22" fill="#4ade80">теперь я лучше тебя</text>
+  <text x="320" y="420" text-anchor="middle" font-family="monospace" font-size="16" fill="#166534">(и это не обсуждается)</text>
+  <text x="320" y="450" text-anchor="middle" font-family="monospace" font-size="13" fill="#166534">кстати, блинчик лох</text>
+</svg>

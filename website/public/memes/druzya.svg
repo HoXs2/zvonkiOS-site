@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480">
+  <defs>
+    <pattern id="g5" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#0f2f1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="480" fill="#000"/>
+  <rect width="640" height="480" fill="url(#g5)"/>
+  <rect x="12" y="12" width="616" height="456" fill="none" stroke="#22c55e" stroke-opacity="0.35" stroke-width="2"/>
+
+  <text x="320" y="90" text-anchor="middle" font-family="monospace" font-size="15" fill="#166534">собрал дистро для друзей</text>
+  <text x="320" y="120" text-anchor="middle" font-family="monospace" font-size="15" fill="#166534">раздал iso</text>
+  <text x="320" y="150" text-anchor="middle" font-family="monospace" font-size="15" fill="#166534">жду отзывы</text>
+
+  <text x="320" y="270" text-anchor="middle" font-family="monospace" font-size="50" font-weight="bold" fill="#4ade80">0 СКАЧИВАНИЙ</text>
+
+  <text x="320" y="330" text-anchor="middle" font-family="monospace" font-size="28" fill="#22c55e">друзей тоже 0</text>
+
+  <text x="320" y="410" text-anchor="middle" font-family="monospace" font-size="16" fill="#166534">хотя бы система со мной</text>
+  <text x="320" y="440" text-anchor="middle" font-family="monospace" font-size="13" fill="#166534">она-то не отменяется</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480">
+  <defs>
+    <pattern id="g2" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#0f2f1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="480" fill="#000"/>
+  <rect width="640" height="480" fill="url(#g2)"/>
+  <rect x="12" y="12" width="616" height="456" fill="none" stroke="#22c55e" stroke-opacity="0.35" stroke-width="2"/>
+
+  <text x="40" y="70" font-family="monospace" font-size="22" fill="#4ade80">[root@zvonkiOS ~]# pacman -Syu</text>
+
+  <rect x="60" y="130" width="520" height="34" fill="none" stroke="#22c55e" stroke-width="2"/>
+  <rect x="64" y="134" width="500" height="26" fill="#22c55e" fill-opacity="0.25"/>
+  <rect x="64" y="134" width="495" height="26" fill="#22c55e"/>
+  <text x="320" y="154" text-anchor="middle" font-family="monospace" font-size="16" fill="#000" font-weight="bold">99%</text>
+
+  <text x="320" y="230" text-anchor="middle" font-family="monospace" font-size="40" font-weight="bold" fill="#22c55e">ТИХО. МОЛИМСЯ.</text>
+
+  <g font-family="monospace" font-size="16" fill="#166534">
+    <text x="60" y="290">:: Синхронизация баз данных пакетов...</text>
+    <text x="60" y="320">:: Разрешение зависимостей...</text>
+    <text x="60" y="350">:: Осталось: 1 пакет. Он ждёт тебя.</text>
+    <text x="60" y="380">:: Подпись доверия: сомнительная</text>
+  </g>
+
+  <text x="320" y="430" text-anchor="middle" font-family="monospace" font-size="18" fill="#4ade80">pacman -Syu и помолись</text>
+</svg>

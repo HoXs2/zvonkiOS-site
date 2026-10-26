@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <pattern id="lg" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#0f2f1a" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="45%" r="45%">
+      <stop offset="0%" stop-color="#22c55e" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="#000"/>
+  <rect width="600" height="600" fill="url(#lg)"/>
+  <rect width="600" height="600" fill="url(#glow)"/>
+
+  <g transform="translate(300 280)">
+    <path d="M0 -110 C-52 -110 -80 -68 -80 -16 V36 L-110 80 H110 L80 36 V-16 C80 -68 52 -110 0 -110 Z"
+          fill="none" stroke="#22c55e" stroke-width="6"/>
+    <circle cx="0" cy="100" r="16" fill="#22c55e"/>
+    <text x="0" y="20" text-anchor="middle" font-family="monospace" font-size="64" font-weight="bold" fill="#22c55e">Z</text>
+
+    <path d="M-160 -40 Q-186 0 -160 40" fill="none" stroke="#22c55e" stroke-opacity="0.5" stroke-width="4"/>
+    <path d="M-190 -70 Q-226 0 -190 70" fill="none" stroke="#22c55e" stroke-opacity="0.25" stroke-width="4"/>
+    <path d="M160 -40 Q186 0 160 40" fill="none" stroke="#22c55e" stroke-opacity="0.5" stroke-width="4"/>
+    <path d="M190 -70 Q226 0 190 70" fill="none" stroke="#22c55e" stroke-opacity="0.25" stroke-width="4"/>
+  </g>
+
+  <text x="300" y="490" text-anchor="middle" font-family="monospace" font-size="42" font-weight="bold" fill="#4ade80">ZвонкиОС</text>
+  <text x="300" y="530" text-anchor="middle" font-family="monospace" font-size="16" fill="#166534">тут будет наше лого</text>
+</svg>

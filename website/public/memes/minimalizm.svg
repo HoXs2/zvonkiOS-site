@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="640" height="480">
+  <defs>
+    <pattern id="g3" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#0f2f1a" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="480" fill="#000"/>
+  <rect width="640" height="480" fill="url(#g3)"/>
+  <rect x="12" y="12" width="616" height="456" fill="none" stroke="#22c55e" stroke-opacity="0.35" stroke-width="2"/>
+
+  <text x="320" y="120" text-anchor="middle" font-family="monospace" font-size="20" fill="#166534">минимализм уровня бог</text>
+
+  <rect x="120" y="160" width="400" height="150" fill="none" stroke="#22c55e" stroke-width="2"/>
+  <text x="320" y="240" text-anchor="middle" font-family="monospace" font-size="22" fill="#22c55e">_</text>
+
+  <text x="320" y="370" text-anchor="middle" font-family="monospace" font-size="36" font-weight="bold" fill="#4ade80">я удалил всё</text>
+  <text x="320" y="410" text-anchor="middle" font-family="monospace" font-size="20" fill="#22c55e">даже себя</text>
+  <text x="320" y="446" text-anchor="middle" font-family="monospace" font-size="14" fill="#166534">зато быстро грузится</text>
+</svg>
