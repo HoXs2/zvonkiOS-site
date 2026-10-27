@@ -25,7 +25,7 @@ export default function RootLayout({
       >
         <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,#001a00,transparent),radial-gradient(ellipse_at_bottom,#000500,transparent)]">
           <header className="border-b border-green-800/50 backdrop-blur-sm">
-            <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3">
               <Link
                 href="/"
                 className="text-xl font-bold tracking-widest uppercase glitch"
@@ -33,7 +33,7 @@ export default function RootLayout({
               >
                 [ZвонкиОС]
               </Link>
-              <div className="flex gap-6 text-sm">
+              <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm sm:gap-6">
                 <Link href="/" className="hover:text-green-300 transition-colors">~/home</Link>
                 <Link href="/#memes" className="hover:text-green-300 transition-colors">~/мемы</Link>
                 <Link href="/#gallery" className="hover:text-green-300 transition-colors">~/галерея</Link>
