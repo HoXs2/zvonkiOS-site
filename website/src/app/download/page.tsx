@@ -87,7 +87,30 @@ sudo dd if=zvonkiOS-*.iso of=/dev/sdX bs=4M status=progress oflag=sync`}
             <span className="text-green-300">archinstall</span>
           </p>
           <p>
-            <span className="text-green-600">5.</span> звонки не отменяются
+            <span className="text-green-600">5.</span> после установки{" "}
+            <span className="text-green-300">zvonkiOS-brand /mnt</span> — брендинг
+            переедет на диск (os-release, motd, логотип fastfetch, zvonk)
+          </p>
+          <p>
+            <span className="text-green-600">6.</span> звонки не отменяются
+          </p>
+        </div>
+      </section>
+
+      <section className="border border-green-800/50 p-6 bg-black/40 space-y-3">
+        <h2 className="text-green-300">[уже стоит archinstall-система?]</h2>
+        <div className="text-sm space-y-2 text-green-400/80">
+          <p>
+            брендинг можно поставить отдельным пакетом — он же лежит внутри ISO
+            и в релизе
+          </p>
+          <pre className="text-green-400/80 text-xs leading-tight overflow-x-auto border border-green-900/50 p-3">
+{`curl -LO ${RELEASES_URL}/latest/download/zvonkios-branding-1.0.0-1-any.pkg.tar.zst
+sudo pacman -U --overwrite 'etc/issue' --overwrite 'etc/skel/.bashrc' \\
+  zvonkios-branding-*.pkg.tar.zst`}
+          </pre>
+          <p className="text-green-700 text-xs">
+            после этого /etc/os-release и fastfetch станут звоночными
           </p>
         </div>
       </section>

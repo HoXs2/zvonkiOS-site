@@ -7,4 +7,4 @@ if command -v fastfetch >/dev/null 2>&1; then
   fastfetch --config /etc/fastfetch/config.jsonc
 fi
 
-printf '\nЗвонки не отменяются. Установка: archinstall, звонок: zvonk\n\n'
+printf '\nЗвонки не отменяются. Установка: archinstall → zvonkiOS-brand /mnt, звонок: zvonk\n\n'

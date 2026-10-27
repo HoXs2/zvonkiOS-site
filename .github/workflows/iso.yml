@@ -9,12 +9,24 @@ on:
 permissions:
   contents: write
 
+env:
+  ISO_VERSION: ""
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Resolve ISO version from tag
+        id: ver
+        run: |
+          if [[ "${GITHUB_REF_TYPE}" == "tag" && "${GITHUB_REF_NAME}" == iso-* ]]; then
+            echo "version=${GITHUB_REF_NAME#iso-}" >>"$GITHUB_OUTPUT"
+          else
+            echo "version=" >>"$GITHUB_OUTPUT"
+          fi
 
       - name: Cache pacman packages
         uses: actions/cache@v4
@@ -29,9 +41,10 @@ jobs:
           docker run --rm --privileged \
             -v "$PWD:/repo" \
             -v "$HOME/.cache/zvonkiOS-pkg:/var/cache/pacman/pkg" \
+            -e ISO_VERSION="${{ steps.ver.outputs.version }}" \
             -w /repo/distro \
             archlinux:latest \
-            bash -lc 'pacman -Syu --noconfirm --needed archiso && ./build.sh'
+            bash -lc 'pacman -Syu --noconfirm --needed archiso libarchive zstd && ./build.sh'
 
       - name: Show result
         run: ls -lh distro/out
@@ -43,6 +56,7 @@ jobs:
           if-no-files-found: error
           path: |
             distro/out/*.iso
+            distro/out/*.pkg.tar.zst
             distro/out/sha256sums.txt
 
       - name: Publish release
@@ -53,7 +67,21 @@ jobs:
           body: |
             ZвонкиОС live ISO.
 
+            ## Установка
+            1. Запиши образ на флешку (`dd` или Ventoy в режиме DD).
+            2. Загрузись, запусти `archinstall`.
+            3. После установки: `zvonkiOS-brand /mnt` — брендинг попадёт на диск.
+
+            ## Уже установлена система?
+            `zvonkios-branding` можно поставить отдельно:
+
+            ```bash
+            curl -LO https://github.com/HoXs2/zvonkiOS-site/releases/latest/download/zvonkios-branding-1.0.0-1-any.pkg.tar.zst
+            sudo pacman -U --overwrite 'etc/issue' --overwrite 'etc/skel/.bashrc' zvonkios-branding-*.pkg.tar.zst
+            ```
+
             Звонки не отменяются.
           files: |
             distro/out/*.iso
+            distro/out/*.pkg.tar.zst
             distro/out/sha256sums.txt

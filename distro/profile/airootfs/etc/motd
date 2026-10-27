@@ -11,6 +11,7 @@
   Звонки не отменяются.
 
   Установить:   archinstall
+  После него:   zvonkiOS-brand /mnt   (брендинг на установленную систему)
   Позвонить:    zvonk
   Ещё мем:      zvonk --meme
   Инфо:         fastfetch

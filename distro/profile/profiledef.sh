@@ -5,7 +5,7 @@ iso_name="zvonkiOS"
 iso_label="ZVONKIOS_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m)"
 iso_publisher="zvonkiOS <https://hoxs2.github.io/zvonkiOS-site/>"
 iso_application="zvonkiOS live ISO"
-iso_version="$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)"
+iso_version="${ISO_VERSION:-$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y.%m.%d)}"
 install_dir="zvonkios"
 bootmodes=('bios.syslinux'
            'uefi.systemd-boot')
@@ -22,6 +22,7 @@ file_permissions=(
   ["/usr/local/bin/choose-mirror"]="0:0:755"
   ["/usr/local/bin/zvonk"]="0:0:755"
   ["/usr/local/bin/zvonkiOS-welcome"]="0:0:755"
+  ["/usr/local/bin/zvonkiOS-brand"]="0:0:755"
   ["/usr/local/bin/Installation_guide"]="0:0:755"
   ["/usr/local/bin/livecd-sound"]="0:0:755"
 )

@@ -1,5 +1,23 @@
 #!/bin/sh
-#
 # SPDX-License-Identifier: GPL-3.0-or-later
+#
+# Установка ZвонкиОС: archinstall, потом брендинг на диск.
 
-exec xdg-open 'https://wiki.archlinux.org/title/Installation_guide'
+cat <<'EOF'
+ZвонкиОС — установка
+
+  1. archinstall
+       раздел диск, выбери файловую систему, DE по вкусу.
+       точка монтирования — /mnt (по умолчанию).
+
+  2. zvonkiOS-brand /mnt
+       переносит брендинг на установленную систему:
+       /etc/os-release, motd, issue, логотип fastfetch, команду zvonk.
+
+  3. reboot
+
+Полная инструкция: https://wiki.archlinux.org/title/Installation_guide
+Сайт:              https://hoxs2.github.io/zvonkiOS-site/
+
+Звонки не отменяются.
+EOF

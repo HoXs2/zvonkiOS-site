@@ -15,14 +15,19 @@ fi
 mkdir -p "$OUT_DIR"
 rm -rf "$WORK_DIR"
 
+# пакет брендинга: кладётся и в out/, и в профиль (внутрь live-системы)
+OUT_DIR="$OUT_DIR" ./build-branding-pkg.sh
+
+export ISO_VERSION="${ISO_VERSION:-}"
 mkarchiso -v -w "$WORK_DIR" -o "$OUT_DIR" profile
 
+iso_file="$(ls -t "$OUT_DIR"/*.iso | head -1)"
 (
   cd "$OUT_DIR"
-  sha256sum ./*.iso > sha256sums.txt
+  sha256sum "$(basename "$iso_file")" ./*.pkg.tar.zst > sha256sums.txt
 )
 
 echo
 echo "готово:"
-ls -lh "$OUT_DIR"/*.iso
+ls -lh "$OUT_DIR"/*.iso "$OUT_DIR"/*.pkg.tar.zst
 cat "$OUT_DIR/sha256sums.txt"

@@ -1,0 +1,82 @@
+#!/usr/bin/env bash
+# zvonkiOS-brand — переносит брендинг ZвонкиОС на установленную систему.
+# Запускать из live-системы после archinstall.
+set -euo pipefail
+
+GREEN=$'\033[1;32m'
+YELLOW=$'\033[1;33m'
+RED=$'\033[1;31m'
+DIM=$'\033[2m'
+NC=$'\033[0m'
+
+target="/mnt"
+hostname=""
+
+usage() {
+  cat <<EOF
+${GREEN}zvonkiOS-brand${NC} — брендинг установленной системы
+
+  ${YELLOW}zvonkiOS-brand${NC}                 применить к ${target} (после archinstall)
+  ${YELLOW}zvonkiOS-brand /mnt${NC}            то же самое, явно
+  ${YELLOW}zvonkiOS-brand -n zvonok-pc${NC}    ещё и hostname поменять
+  ${YELLOW}zvonkiOS-brand --help${NC}          эта справка
+
+Ставит пакет zvonkios-branding: /etc/os-release, motd, issue,
+конфиг fastfetch с логотипом, zvonk и zvonkiOS-welcome.
+
+${DIM}звонки не отменяются${NC}
+EOF
+}
+
+die() { printf '%s%s%s\n' "$RED" "$*" "$NC" >&2; exit 1; }
+
+while (($#)); do
+  case "$1" in
+    -h|--help) usage; exit 0 ;;
+    -n|--hostname) hostname="${2:-}"; [[ -n "$hostname" ]] || die "нужен hostname"; shift 2 ;;
+    -*) die "неизвестный флаг: $1" ;;
+    *) target="$1"; shift ;;
+  esac
+done
+
+[[ -d "$target/etc" ]] || die "$target не похож на корень системы (нет etc/)"
+[[ -x "$target/usr/bin/pacman" ]] || die "$target: нет pacman — система установлена?"
+
+shopt -s nullglob
+pkgs=(/usr/share/zvonkios/zvonkios-branding-*.pkg.tar.zst)
+((${#pkgs[@]})) || die "не нашёл пакет zvonkios-branding в /usr/share/zvonkios/"
+shopt -u nullglob
+
+conf="$(mktemp)"
+trap 'rm -f "$conf"' EXIT
+printf '[options]\nArchitecture = auto\nSigLevel = Never\n' >"$conf"
+
+printf '%sприменяю брендинг к %s%s\n' "$DIM" "$target" "$NC"
+pacman --root "$target" --config "$conf" --noconfirm \
+  --overwrite 'etc/issue' --overwrite 'etc/skel/.bashrc' \
+  -U "${pkgs[0]}"
+
+# у root уже есть свой .bashrc — положим туда же, что и в skel
+if [[ -d "$target/root" && -f "$target/etc/skel/.bashrc" ]]; then
+  install -m 0644 "$target/etc/skel/.bashrc" "$target/root/.bashrc"
+fi
+
+if [[ -n "$hostname" ]]; then
+  printf '%s\n' "$hostname" >"$target/etc/hostname"
+  printf 'hostname: %s\n' "$hostname"
+fi
+
+cat <<EOF
+
+${GREEN}готово.${NC} После перезагрузки:
+
+  /etc/os-release   → ZвонкиОС
+  fastfetch         → логотип ZвонкиОС
+  zvonk             → звонки
+  motd              → приветствие при логине
+
+${DIM}если fastfetch ещё не стоит:
+  arch-chroot $target pacman -S --needed fastfetch cmatrix cowsay figlet sl${NC}
+
+${GREEN}звонки не отменяются.${NC}
+EOF
