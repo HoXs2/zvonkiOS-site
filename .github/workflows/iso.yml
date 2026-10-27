@@ -1,0 +1,59 @@
+name: Build ISO
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "iso-*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache pacman packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/zvonkiOS-pkg
+          key: archiso-pkgs-${{ github.run_id }}
+          restore-keys: |
+            archiso-pkgs-
+
+      - name: Build ISO in Arch container
+        run: |
+          docker run --rm --privileged \
+            -v "$PWD:/repo" \
+            -v "$HOME/.cache/zvonkiOS-pkg:/var/cache/pacman/pkg" \
+            -w /repo/distro \
+            archlinux:latest \
+            bash -lc 'pacman -Syu --noconfirm --needed archiso && ./build.sh'
+
+      - name: Show result
+        run: ls -lh distro/out
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zvonkiOS-iso
+          if-no-files-found: error
+          path: |
+            distro/out/*.iso
+            distro/out/sha256sums.txt
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/iso-')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ZвонкиОС ${{ github.ref_name }}
+          body: |
+            ZвонкиОС live ISO.
+
+            Звонки не отменяются.
+          files: |
+            distro/out/*.iso
+            distro/out/sha256sums.txt

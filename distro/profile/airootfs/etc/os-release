@@ -1,0 +1,11 @@
+NAME="ZвонкиОС"
+PRETTY_NAME="ZвонкиОС (rolling)"
+ID=zvonkios
+ID_LIKE=arch
+BUILD_ID=rolling
+ANSI_COLOR="1;32"
+HOME_URL="https://hoxs2.github.io/zvonkiOS-site/"
+DOCUMENTATION_URL="https://wiki.archlinux.org/title/Installation_guide"
+SUPPORT_URL="https://github.com/HoXs2/zvonkiOS-site/issues"
+BUG_REPORT_URL="https://github.com/HoXs2/zvonkiOS-site/issues"
+LOGO=zvonkios-logo

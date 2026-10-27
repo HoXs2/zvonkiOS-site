@@ -1,0 +1,19 @@
+
+   .---------.
+  /  ZVON     \
+ |  .---.     |    ZVON ZVON
+ |  |   |     |       ZVON
+ |  `---'     |    ZVON ZVON
+  \          /
+   `---------'
+
+  ZвонкиОС — rolling, arch-based, мемный.
+  Звонки не отменяются.
+
+  Установить:   archinstall
+  Позвонить:    zvonk
+  Ещё мем:      zvonk --meme
+  Инфо:         fastfetch
+  Wi-Fi:        iwctl
+
+  Сайт: https://hoxs2.github.io/zvonkiOS-site/
