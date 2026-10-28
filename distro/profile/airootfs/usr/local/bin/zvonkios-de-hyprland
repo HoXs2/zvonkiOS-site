@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+# zvonkios-de-hyprland — установка Hyprland + конфиг ZвонкиОС (chroot).
+set -uo pipefail
+
+say() { printf '\033[1;32m[zvonkios]\033[0m %s\n' "$*"; }
+
+# конфиг тянем с гитхаба, если он недоступен — берём базовый из образа
+REPO="${ZVONKIOS_HYPR_REPO:-https://github.com/end-4/dots-hyprland}"
+
+# В chroot Calamares монтирует свежий tmpfs на /run, поэтому симлинк
+# /etc/resolv.conf -> /run/systemd/resolve/stub-resolv.conf может быть битым.
+if [[ ! -s /etc/resolv.conf ]]; then
+  rm -f /etc/resolv.conf
+  printf 'nameserver 127.0.0.53\nnameserver 1.1.1.1\nnameserver 8.8.8.8\n' >/etc/resolv.conf
+fi
+
+if [[ ! -f /etc/pacman.d/gnupg/trustdb.gpg ]]; then
+  pacman-key --init >/dev/null 2>&1 || true
+  pacman-key --populate archlinux >/dev/null 2>&1 || true
+fi
+
+say "синхронизируем базы пакетов"
+pacman -Sy --noconfirm || say "нет сети? базы не обновились"
+
+say "ставим Hyprland"
+if pacman -S --noconfirm --needed \
+  hyprland hyprpaper \
+  xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
+  qt6-wayland qt6ct \
+  waybar rofi kitty \
+  foot \
+  grim slurp wl-clipboard \
+  polkit-kde-agent \
+  pipewire pipewire-pulse wireplumber \
+  network-manager-applet \
+  thunar \
+  brightnessctl playerctl \
+  hyprpicker slurp swappy \
+  imagemagick wget curl git; then
+  # маркер для zvonkios-final: KDE можно убрать
+  install -d /etc/zvonkios
+  echo hyprland >/etc/zvonkios/desktop
+else
+  say "не удалось доставить Hyprland — остаётся KDE Plasma"
+fi
+
+# пользователь, созданный установщиком
+user="$(getent passwd 1000 | cut -d: -f1)"
+home="$(getent passwd 1000 | cut -d: -f6)"
+
+if [[ -n "${user:-}" && -n "${home:-}" ]]; then
+  say "раскладываем конфиг для ${user}"
+  install -d -o "$user" -g "$user" "$home/.config"
+
+  tmp="$(mktemp -d)"
+  if git clone --depth 1 "$REPO" "$tmp/conf" >/dev/null 2>&1; then
+    say "конфиг с гитхаба: $REPO"
+    src="$tmp/conf"
+  else
+    say "гитхаб недоступен, беру базовый конфиг из образа"
+    src="/usr/share/zvonkios/hyprland"
+  fi
+
+  if [[ -d "$src" ]]; then
+    # end-4/dots-hyprland держит конфиги в ./config/ или ./.config/
+    if [[ -d "$src/.config" ]]; then
+      cp -rT "$src/.config" "$home/.config" 2>/dev/null || cp -r "$src/.config"/. "$home/.config"/
+    elif [[ -d "$src/config" ]]; then
+      cp -rT "$src/config" "$home/.config" 2>/dev/null || cp -r "$src/config"/. "$home/.config"/
+    else
+      cp -rT "$src" "$home/.config" 2>/dev/null || cp -r "$src"/. "$home/.config"/
+    fi
+    chown -R "$user":"$user" "$home/.config"
+  fi
+
+  # hyprpaper читает ~/.config/hypr/hyprpaper.conf — если конфиг с гитхаба
+  # его не содержит, кладём свой, иначе обоев не будет.
+  if [[ ! -f "$home/.config/hypr/hyprpaper.conf" ]]; then
+    install -d -o "$user" -g "$user" "$home/.config/hypr"
+    cat >"$home/.config/hypr/hyprpaper.conf" <<'EOF'
+preload = /usr/share/wallpapers/zvonkios/contents/images/1920x1080.png
+wallpaper = ,/usr/share/wallpapers/zvonkios/contents/images/1920x1080.png
+splash = false
+EOF
+    chown "$user":"$user" "$home/.config/hypr/hyprpaper.conf"
+  fi
+  rm -rf "$tmp"
+
+  printf '%s\n' "$REPO" >"$home/.config/zvonkios-hypr-repo"
+  chown "$user":"$user" "$home/.config/zvonkios-hypr-repo"
+else
+  say "пользователя с uid 1000 нет — конфиг не разложен"
+fi
+
+systemctl enable sddm.service >/dev/null 2>&1 || true
+
+say "Hyprland готов."
